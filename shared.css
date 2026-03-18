@@ -1,0 +1,119 @@
+/* ─────────────────────────────────────────
+   shared.css — common styles for all pages
+   ───────────────────────────────────────── */
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --bg: #0a0a0a;
+  --surface: #131313;
+  --surface2: #1a1a1a;
+  --text: #d4d0c8;
+  --text-dim: #5a5a5a;
+  --accent: #c8b87a;
+  --accent-dim: rgba(200,184,122,0.12);
+  --accent-glow: rgba(200,184,122,0.25);
+  --mono: 'IBM Plex Mono', monospace;
+  --display: 'Playfair Display', serif;
+  --radius: 8px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.75;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── CANVAS ─── */
+#bg-canvas {
+  position: fixed; inset: 0; z-index: 0; opacity: 0.4;
+}
+
+/* ─── GRAIN ─── */
+body::after {
+  content:''; position:fixed; inset:0; z-index:1; pointer-events:none;
+  opacity:0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+/* ─── GLOW ─── */
+.glow {
+  position:fixed; width:500px; height:500px; border-radius:50%;
+  filter:blur(130px); pointer-events:none; z-index:1; opacity:0.1;
+  background: radial-gradient(circle, var(--accent), transparent 70%);
+  transition: transform 0.8s cubic-bezier(.25,.46,.45,.94);
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;
+  padding: 20px 28px;
+  background: linear-gradient(180deg, rgba(10,10,10,0.95) 60%, transparent);
+}
+nav a {
+  color: var(--text-dim); text-decoration: none; font-size: 12px;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 6px 12px; border-radius: 20px; border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+nav a:hover, nav a.active {
+  color: var(--accent);
+  border-color: var(--accent-dim);
+  background: var(--accent-dim);
+}
+
+/* ─── SECTION LABELS ─── */
+.section-label {
+  font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--text-dim); margin-bottom: 8px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-label::after {
+  content:''; flex:1; height:1px;
+  background: linear-gradient(90deg, var(--text-dim), transparent);
+  opacity: 0.2;
+}
+
+/* ─── SECTION TITLES ─── */
+.section-title {
+  font-family: var(--display);
+  font-weight: 800; color: #fff; line-height: 1.1;
+  letter-spacing: -.02em;
+}
+
+/* ─── DIVIDER ─── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--text-dim) 20%, var(--text-dim) 80%, transparent);
+  opacity: .18; margin: 52px 0;
+}
+
+/* ─── BADGE ─── */
+.t-badge {
+  font-size: 11px; padding: 2px 8px; border-radius: 4px;
+  background: var(--accent-dim); color: var(--accent);
+  border: 1px solid rgba(200,184,122,.15);
+}
+
+/* ─── SCROLL REVEAL ─── */
+.reveal {
+  opacity: 0; transform: translateY(22px);
+  transition: opacity .7s cubic-bezier(.25,.46,.45,.94),
+              transform .7s cubic-bezier(.25,.46,.45,.94);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .08s; }
+.reveal-delay-2 { transition-delay: .16s; }
+.reveal-delay-3 { transition-delay: .24s; }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+@keyframes blink  { 0%,100%{opacity:1} 50%{opacity:0} }

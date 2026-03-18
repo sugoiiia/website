@@ -5,109 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Work — Aahil Ansari</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared.css" />
 <style>
-  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
-  :root {
-    --bg: #0a0a0a;
-    --surface: #131313;
-    --surface2: #1a1a1a;
-    --text: #d4d0c8;
-    --text-dim: #5a5a5a;
-    --accent: #c8b87a;
-    --accent-dim: rgba(200,184,122,0.12);
-    --accent-glow: rgba(200,184,122,0.25);
-    --mono: 'IBM Plex Mono', monospace;
-    --display: 'Playfair Display', serif;
-    --radius: 8px;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--mono);
-    font-size: 14px;
-    line-height: 1.75;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* ─── CANVAS ─── */
-  #bg-canvas {
-    position: fixed; inset: 0; z-index: 0; opacity: 0.4;
-  }
-
-  /* ─── GRAIN ─── */
-  body::after {
-    content:''; position:fixed; inset:0; z-index:1; pointer-events:none;
-    opacity:0.03;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 200px;
-  }
-
-  /* ─── GLOW ─── */
-  .glow {
-    position:fixed; width:500px; height:500px; border-radius:50%;
-    filter:blur(130px); pointer-events:none; z-index:1; opacity:0.1;
-    background: radial-gradient(circle, var(--accent), transparent 70%);
-    transition: transform 0.8s cubic-bezier(.25,.46,.45,.94);
-  }
-
-  /* ─── NAV ─── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-    display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;
-    padding: 20px 28px;
-    background: linear-gradient(180deg, rgba(10,10,10,0.95) 60%, transparent);
-  }
-  nav a {
-    color: var(--text-dim); text-decoration: none; font-size: 12px;
-    letter-spacing: .08em; text-transform: uppercase;
-    padding: 6px 12px; border-radius: 20px; border: 1px solid transparent;
-    transition: all 0.3s ease;
-  }
-  nav a:hover, nav a.active {
-    color: var(--accent);
-    border-color: var(--accent-dim);
-    background: var(--accent-dim);
-  }
-
-  /* ─── LAYOUT ─── */
   .wrapper {
     position: relative; z-index: 2;
     max-width: 960px; margin: 0 auto; padding: 0 28px;
     padding-top: 96px; padding-bottom: 80px;
   }
 
-  /* ─── PAGE HEADER ─── */
+  /* ─── PAGE HEADER (animated on load) ─── */
   .section-label {
-    font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
-    color: var(--text-dim); margin-bottom: 8px;
-    display: flex; align-items: center; gap: 10px;
     opacity: 0; transform: translateY(10px);
     animation: fadeUp .6s .2s cubic-bezier(.25,.46,.45,.94) forwards;
   }
-  .section-label::after {
-    content:''; flex:1; height:1px;
-    background: linear-gradient(90deg, var(--text-dim), transparent);
-    opacity: 0.2;
-  }
   .section-title {
-    font-family: var(--display); font-size: clamp(32px, 6vw, 52px);
-    font-weight: 800; color: #fff; line-height: 1.1;
-    letter-spacing: -.02em; margin-bottom: 32px;
+    font-size: clamp(32px, 6vw, 52px); margin-bottom: 32px;
     opacity: 0; transform: translateY(12px);
     animation: fadeUp .6s .35s cubic-bezier(.25,.46,.45,.94) forwards;
   }
 
-  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-
   /* ─── FILTER BAR ─── */
   .filter-bar {
-    display: flex; flex-wrap: wrap; gap: 8px;
-    margin-bottom: 36px;
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px;
     opacity: 0; transform: translateY(10px);
     animation: fadeUp .6s .5s cubic-bezier(.25,.46,.45,.94) forwards;
   }
@@ -119,13 +38,9 @@
     background: transparent; color: var(--text-dim);
     transition: color .25s, background .25s, border-color .25s;
   }
-  .filter-pill:hover {
-    color: var(--text);
-    border-color: rgba(255,255,255,.16);
-  }
+  .filter-pill:hover { color: var(--text); border-color: rgba(255,255,255,.16); }
   .filter-pill.active {
-    color: var(--accent);
-    background: var(--accent-dim);
+    color: var(--accent); background: var(--accent-dim);
     border-color: rgba(200,184,122,.25);
   }
 
@@ -138,72 +53,32 @@
 
   /* ─── WORK CARD ─── */
   .work-card {
-    background: var(--surface);
-    border: 1px solid rgba(255,255,255,.06);
-    border-radius: var(--radius);
-    overflow: hidden;
-    cursor: pointer;
+    background: var(--surface); border: 1px solid rgba(255,255,255,.06);
+    border-radius: var(--radius); overflow: hidden; cursor: pointer;
     transition: transform .3s cubic-bezier(.25,.46,.45,.94),
                 border-color .3s,
                 opacity .35s cubic-bezier(.25,.46,.45,.94);
     opacity: 0; transform: translateY(18px);
   }
-  .work-card.visible {
-    opacity: 1; transform: translateY(0);
-  }
-  .work-card.hiding {
-    opacity: 0; transform: translateY(10px);
-    pointer-events: none;
-  }
-  .work-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(200,184,122,.25);
-  }
-  /* keep lift suppressed while fading out */
-  .work-card.hiding:hover {
-    transform: translateY(10px);
-  }
+  .work-card.visible  { opacity: 1; transform: translateY(0); }
+  .work-card.hiding   { opacity: 0; transform: translateY(10px); pointer-events: none; }
+  .work-card:hover    { transform: translateY(-4px); border-color: rgba(200,184,122,.25); }
+  .work-card.hiding:hover { transform: translateY(10px); }
 
   .card-thumb {
-    aspect-ratio: 16 / 9;
-    background: var(--surface2);
+    aspect-ratio: 16 / 9; background: var(--surface2);
     display: flex; align-items: center; justify-content: center;
     border-radius: var(--radius) var(--radius) 0 0;
   }
   .card-thumb-label {
-    font-family: var(--mono); font-size: 11px; color: var(--text-dim);
-    letter-spacing: .1em; opacity: .5;
+    font-family: var(--mono); font-size: 11px;
+    color: var(--text-dim); letter-spacing: .1em; opacity: .5;
   }
+  .card-body   { padding: 18px 20px 16px; }
+  .card-title  { font-size: 15px; color: #fff; font-weight: 500; margin-bottom: 8px; line-height: 1.4; }
+  .card-desc   { font-size: 13px; color: var(--text-dim); line-height: 1.6; margin-bottom: 14px; }
+  .card-tags   { display: flex; flex-wrap: wrap; gap: 5px; }
 
-  .card-body {
-    padding: 18px 20px 16px;
-  }
-  .card-title {
-    font-size: 15px; color: #fff; font-weight: 500;
-    margin-bottom: 8px; line-height: 1.4;
-  }
-  .card-desc {
-    font-size: 13px; color: var(--text-dim); line-height: 1.6;
-    margin-bottom: 14px;
-  }
-  .card-tags {
-    display: flex; flex-wrap: wrap; gap: 5px;
-  }
-  .t-badge {
-    font-size: 11px; padding: 2px 8px; border-radius: 4px;
-    background: var(--accent-dim); color: var(--accent);
-    border: 1px solid rgba(200,184,122,.15);
-  }
-
-  /* ─── SCROLL REVEAL ─── */
-  .reveal {
-    opacity: 0; transform: translateY(22px);
-    transition: opacity .7s cubic-bezier(.25,.46,.45,.94),
-                transform .7s cubic-bezier(.25,.46,.45,.94);
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* ─── RESPONSIVE ─── */
   @media (max-width: 480px) {
     nav { gap: 4px; }
     nav a { font-size: 11px; padding: 5px 9px; }
@@ -220,7 +95,7 @@
 <!-- ─── NAV ─── -->
 <nav>
   <a href="index.html">Home</a>
-  <a href="work.html" class="active">Work</a>
+  <a href="work.html">Work</a>
   <a href="photography.html">Photography</a>
   <a href="about.html">About</a>
 </nav>
@@ -248,9 +123,7 @@
       <div class="card-body">
         <div class="card-title">High Speed RC Car</div>
         <div class="card-desc">Description coming soon.</div>
-        <div class="card-tags">
-          <span class="t-badge">Mechanical</span>
-        </div>
+        <div class="card-tags"><span class="t-badge">Mechanical</span></div>
       </div>
     </div>
 
@@ -271,9 +144,7 @@
       <div class="card-body">
         <div class="card-title">AlbertaHeart: MCL Assembly</div>
         <div class="card-desc">Description coming soon.</div>
-        <div class="card-tags">
-          <span class="t-badge">Mechanical</span>
-        </div>
+        <div class="card-tags"><span class="t-badge">Mechanical</span></div>
       </div>
     </div>
 
@@ -294,9 +165,7 @@
       <div class="card-body">
         <div class="card-title">ARVP: Camera Mount</div>
         <div class="card-desc">Description coming soon.</div>
-        <div class="card-tags">
-          <span class="t-badge">Mechanical</span>
-        </div>
+        <div class="card-tags"><span class="t-badge">Mechanical</span></div>
       </div>
     </div>
 
@@ -305,9 +174,7 @@
       <div class="card-body">
         <div class="card-title">AI Physiotherapist (NatHacks)</div>
         <div class="card-desc">Description coming soon.</div>
-        <div class="card-tags">
-          <span class="t-badge">Software</span>
-        </div>
+        <div class="card-tags"><span class="t-badge">Software</span></div>
       </div>
     </div>
 
@@ -328,9 +195,7 @@
       <div class="card-body">
         <div class="card-title">RL Research — Robotic Ultrasound</div>
         <div class="card-desc">Description coming soon.</div>
-        <div class="card-tags">
-          <span class="t-badge">Research</span>
-        </div>
+        <div class="card-tags"><span class="t-badge">Research</span></div>
       </div>
     </div>
 
@@ -339,154 +204,57 @@
       <div class="card-body">
         <div class="card-title">Tissue Engineering Research</div>
         <div class="card-desc">Description coming soon.</div>
-        <div class="card-tags">
-          <span class="t-badge">Research</span>
-        </div>
+        <div class="card-tags"><span class="t-badge">Research</span></div>
       </div>
     </div>
 
   </div><!-- /card-grid -->
 </div><!-- /wrapper -->
 
+<script src="shared.js"></script>
 <script>
-// ─── 1. MOUSE GLOW ───
+// ─── CARD ENTRANCE ANIMATION ───
 (function(){
-  const g = document.getElementById('glow');
-  let mx = innerWidth/2, my = innerHeight/2, cx = mx, cy = my;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-  (function loop(){
-    cx += (mx - cx) * .06; cy += (my - cy) * .06;
-    g.style.transform = `translate(${cx-250}px,${cy-250}px)`;
-    requestAnimationFrame(loop);
-  })();
-})();
-
-// ─── 2. PARTICLE CANVAS ───
-(function(){
-  const canvas = document.getElementById('bg-canvas');
-  const ctx = canvas.getContext('2d');
-  let W, H, particles = [], mx = -9999, my = -9999;
-
-  function resize(){ W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
-  resize();
-  window.addEventListener('resize', resize, { passive: true });
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-
-  class P {
-    constructor(){ this.reset(); }
-    reset(){
-      this.x = Math.random()*W; this.y = Math.random()*H;
-      this.vx = (Math.random()-.5)*.38; this.vy = (Math.random()-.5)*.38;
-      this.size = Math.random()*1.8+.4; this.alpha = Math.random()*.35+.1;
-    }
-    update(){
-      const dx = mx-this.x, dy = my-this.y;
-      const d = Math.sqrt(dx*dx+dy*dy);
-      if(d<200&&d>0){ this.vx += (dx/d)*.02; this.vy += (dy/d)*.02; }
-      this.vx *= .994; this.vy *= .994;
-      this.x += this.vx; this.y += this.vy;
-      if(this.x<-20) this.x=W+20; if(this.x>W+20) this.x=-20;
-      if(this.y<-20) this.y=H+20; if(this.y>H+20) this.y=-20;
-    }
-    draw(){
-      ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
-      ctx.fillStyle = `rgba(200,184,122,${this.alpha})`; ctx.fill();
-    }
-  }
-
-  const COUNT = Math.min(Math.floor((W*H)/10000), 180);
-  for(let i=0; i<COUNT; i++) particles.push(new P());
-
-  function edges(){
-    const D = 140;
-    for(let i=0; i<particles.length; i++){
-      for(let j=i+1; j<particles.length; j++){
-        const dx = particles[i].x-particles[j].x, dy = particles[i].y-particles[j].y;
-        const d = Math.sqrt(dx*dx+dy*dy);
-        if(d<D){
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(200,184,122,${(1-d/D)*.16})`;
-          ctx.lineWidth = .7; ctx.stroke();
-        }
-      }
-    }
-  }
-
-  function animate(){
-    ctx.clearRect(0, 0, W, H);
-    particles.forEach(p => { p.update(); p.draw(); });
-    edges();
-    requestAnimationFrame(animate);
-  }
-  animate();
-})();
-
-// ─── 3. SCROLL REVEAL ───
-(function(){
-  const els = document.querySelectorAll('.reveal');
-  function check(){
-    els.forEach(el => {
-      if(el.getBoundingClientRect().top < window.innerHeight * 0.9)
-        el.classList.add('visible');
-    });
-  }
-  check();
-  window.addEventListener('scroll', check, { passive: true });
-})();
-
-// ─── 4. CARD ENTRANCE ANIMATION ───
-(function(){
-  const cards = document.querySelectorAll('.work-card');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(e.isIntersecting) {
+  var cards = document.querySelectorAll('.work-card');
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
         e.target.classList.add('visible');
         observer.unobserve(e.target);
       }
     });
   }, { threshold: 0.08 });
-
-  cards.forEach((card, i) => {
+  cards.forEach(function(card, i){
     card.style.transitionDelay = (i * 0.06) + 's';
     observer.observe(card);
   });
 })();
 
-// ─── 5. FILTER ───
+// ─── FILTER ───
 (function(){
-  const pills = document.querySelectorAll('.filter-pill');
-  const cards = document.querySelectorAll('.work-card');
-  const FADE_MS = 350; // must match transition duration on .work-card
+  var pills = document.querySelectorAll('.filter-pill');
+  var cards = document.querySelectorAll('.work-card');
+  var FADE_MS = 350;
 
-  pills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      pills.forEach(p => p.classList.remove('active'));
+  pills.forEach(function(pill){
+    pill.addEventListener('click', function(){
+      pills.forEach(function(p){ p.classList.remove('active'); });
       pill.classList.add('active');
-
-      const filter = pill.dataset.filter;
-
-      cards.forEach(card => {
-        // clear any staggered entrance delay so filter transitions are instant
+      var filter = pill.dataset.filter;
+      cards.forEach(function(card){
         card.style.transitionDelay = '0s';
-
-        const tags = card.dataset.tags.split(',');
-        const match = filter === 'all' || tags.includes(filter);
-
-        if(match) {
-          // pull back into flow first, then fade in next frame
+        var tags = card.dataset.tags.split(',');
+        var match = filter === 'all' || tags.includes(filter);
+        if(match){
           card.style.display = '';
           card.classList.remove('hiding');
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => card.classList.add('visible'));
+          requestAnimationFrame(function(){
+            requestAnimationFrame(function(){ card.classList.add('visible'); });
           });
         } else {
-          // fade out, then remove from flow after transition
           card.classList.remove('visible');
           card.classList.add('hiding');
-          setTimeout(() => {
-            // only hide if still supposed to be hidden
+          setTimeout(function(){
             if(card.classList.contains('hiding')) card.style.display = 'none';
           }, FADE_MS);
         }
