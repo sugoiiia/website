@@ -32,7 +32,28 @@
     animation: fadeUp .5s .4s cubic-bezier(.25,.46,.45,.94) forwards;
   }
   .project-section { margin-bottom: 40px; }
-  .section-content { font-size: 14px; color: var(--text-dim); line-height: 1.85; font-style: italic; }
+
+  ul.section-content {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  ul.section-content li {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.75;
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 6px;
+    font-style: normal;
+  }
+  ul.section-content li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
 
   .gallery-grid {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px;
@@ -95,38 +116,64 @@
   <div class="divider"></div>
 
   <div class="project-section reveal">
-    <div class="section-label">Problem</div>
-    <p class="section-content">[description coming soon]</p>
-  </div>
-
-  <div class="project-section reveal">
-    <div class="section-label">Proposed Solution</div>
-    <p class="section-content">[description coming soon]</p>
-  </div>
-
-  <div class="project-section reveal">
-    <div class="section-label">Design Process</div>
-    <p class="section-content">[description coming soon]</p>
-  </div>
-
-  <div class="project-section reveal">
-    <div class="section-label">Final Product</div>
-    <p class="section-content">[description coming soon]</p>
-  </div>
-
-  <div class="project-section reveal">
-    <div class="section-label">Next Steps</div>
-    <p class="section-content">[description coming soon]</p>
-  </div>
-
-  <div class="project-section reveal">
     <div class="section-label">Gallery</div>
     <div class="gallery-grid" id="gallery">
       <img src="../High Speed RC-Car/Wheel_Assembly_Exploded.png" alt="Wheel assembly exploded view" loading="lazy" />
     </div>
   </div>
 
-</div><!-- /wrapper -->
+  <div class="project-section reveal">
+    <div class="section-label">Problem</div>
+    <ul class="section-content">
+      <li>Wanted a project covering the full mechanical engineering process end to end: selection, analysis, manufacturing constraints, and iteration</li>
+      <li>Needed something with real drivetrain dynamics, stress analysis, and DFM considerations baked in from the start</li>
+      <li>Wanted hands-on exposure to simulation tools and heavy mechanical calculations in a context I actually cared about</li>
+    </ul>
+  </div>
+
+  <div class="project-section reveal">
+    <div class="section-label">Proposed Solution</div>
+    <ul class="section-content">
+      <li>Design and build a high-speed RC car entirely from scratch</li>
+      <li>Every component either sourced with engineering justification or designed and manufactured myself, from motor selection through differential</li>
+    </ul>
+  </div>
+
+  <div class="project-section reveal">
+    <div class="section-label">Design Process</div>
+    <ul class="section-content">
+      <li>Started with motor, battery, and ESC selection since those figures set every downstream constraint: torque, RPM, and power budgets</li>
+      <li>Evaluated belt and gear drives for the drivetrain architecture; belt drive was eliminated early due to spatial inefficiency within the chassis envelope</li>
+      <li>Chose a gear system for flexibility: swapping ratios only requires new gears rather than entirely new belts and pulleys</li>
+      <li>Sourced off-the-shelf gears where possible to keep the design manufacturable and maintainable, then built around those constraints</li>
+      <li>Worked through torque at each stage, Lewis bending stress on gear teeth, shaft torsion, and bearing load cases for validation</li>
+      <li>Several components failed preliminary analysis; the motor shaft failure sent me back to electronics selection entirely, which taught me the importance of the feedback loop between analysis and design</li>
+      <li>Designed the differential from scratch: started with the kinematics of how an open differential distributes torque, then translated that into something manufacturable</li>
+      <li>Made the differential fully modular so internals can be accessed and serviced independently</li>
+      <li>Currently at roughly 15 CAD iterations and 3 printed prototypes; running FEA in Ansys to validate stress concentrations in the differential housing and planet gear interfaces</li>
+    </ul>
+  </div>
+
+  <div class="project-section reveal">
+    <div class="section-label">Final Product</div>
+    <ul class="section-content">
+      <li>High-speed RC car currently in late-stage design and validation</li>
+      <li>Electronics stack integrated and operational</li>
+      <li>Drivetrain architecture finalized with a custom-designed modular differential</li>
+      <li>Awaiting FEA sign-off before committing to metal fabrication</li>
+    </ul>
+  </div>
+
+  <div class="project-section reveal">
+    <div class="section-label">Next Steps</div>
+    <ul class="section-content">
+      <li>Complete FEA validation on the differential housing and planet gear interfaces</li>
+      <li>Build a full vehicle dynamics model with suspension to optimize handling and load distribution</li>
+      <li>Machine final metal components and assemble</li>
+    </ul>
+  </div>
+
+</div>
 
 <div id="lightbox">
   <button id="lb-close" aria-label="Close">&#215;</button>
