@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>High Speed RC Car: Wheel Assemblies — Aahil Ansari</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../shared.css" />
+<style>
+  .wrapper {
+    position: relative; z-index: 2;
+    max-width: 720px; margin: 0 auto; padding: 0 28px;
+    padding-top: 96px; padding-bottom: 80px;
+  }
+  .back-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--text-dim); text-decoration: none; font-size: 12px;
+    letter-spacing: .08em; text-transform: uppercase; margin-bottom: 32px;
+    transition: color .2s;
+  }
+  .back-link:hover { color: var(--accent); }
+  .project-title {
+    font-family: var(--display); font-size: clamp(32px, 6vw, 52px);
+    font-weight: 800; color: #fff; line-height: 1.1;
+    letter-spacing: -.02em; margin-bottom: 16px;
+    opacity: 0; transform: translateY(12px);
+    animation: fadeUp .6s .2s cubic-bezier(.25,.46,.45,.94) forwards;
+  }
+  .project-meta {
+    font-size: 12px; color: var(--text-dim); letter-spacing: .06em; margin-bottom: 36px;
+    opacity: 0; transform: translateY(8px);
+    animation: fadeUp .5s .4s cubic-bezier(.25,.46,.45,.94) forwards;
+  }
+  .project-section { margin-bottom: 40px; }
+  .section-content {
+    list-style: none; display: flex; flex-direction: column; gap: 6px;
+  }
+  .section-content li {
+    font-size: 14px; color: var(--text); line-height: 1.75;
+    padding-left: 16px; position: relative;
+  }
+  .section-content li::before {
+    content: '›'; position: absolute; left: 0; color: var(--accent); font-weight: 700;
+  }
+
+  .gallery-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px;
+  }
+  .gallery-grid img {
+    width: 100%; aspect-ratio: auto; object-fit: cover; border-radius: 6px;
+    cursor: pointer; display: block;
+    transition: opacity .2s, transform .2s cubic-bezier(.25,.46,.45,.94);
+  }
+  .gallery-grid img:hover { opacity: 0.85; transform: scale(0.99); }
+
+  #lightbox {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.92); align-items: center; justify-content: center;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox-img { max-height: 90vh; max-width: 90vw; object-fit: contain; border-radius: 3px; display: block; }
+  .lb-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: none; border: none; cursor: pointer;
+    color: var(--accent); font-size: 48px; line-height: 1;
+    padding: 16px 20px; opacity: 0.7; transition: opacity .2s;
+    font-family: var(--mono); font-weight: 300; user-select: none;
+  }
+  .lb-btn:hover { opacity: 1; }
+  #lb-prev { left: 12px; }
+  #lb-next { right: 12px; }
+  #lb-close {
+    position: absolute; top: 16px; right: 20px;
+    background: none; border: none; cursor: pointer;
+    color: var(--text-dim); font-size: 28px; line-height: 1;
+    padding: 8px; opacity: 0.6; transition: opacity .2s, color .2s; font-family: var(--mono);
+  }
+  #lb-close:hover { opacity: 1; color: var(--accent); }
+
+  @media (max-width: 480px) {
+    nav { gap: 4px; } nav a { font-size: 11px; padding: 5px 9px; }
+    .wrapper { padding-left: 18px; padding-right: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="glow" id="glow"></div>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="../work.html">Work</a>
+  <a href="../photography.html">Photography</a>
+  <a href="../about.html">About</a>
+</nav>
+
+<div class="wrapper">
+
+  <a href="../work.html" class="back-link">&#8592; Work</a>
+
+  <h1 class="project-title">High Speed RC Car: Wheel Assemblies</h1>
+  <p class="project-meta">Personal Project &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Mechanical</p>
+
+  <div class="divider"></div>
+
+  <div class="project-section reveal">
+    <div class="section-label">Gallery</div>
+    <div class="gallery-grid" id="gallery">
+      <img src="../High Speed RC-Car/Wheel Assemblies/Wheel_Assembly_Exploded.png" alt="Wheel assembly exploded view" loading="lazy" />
+      <img src="../High Speed RC-Car/Wheel Assemblies/Upright_FEA.png" alt="Upright FEA analysis" loading="lazy" />
+    </div>
+  </div>
+
+  <div class="project-section reveal">
+    <div class="section-label">Problem</div>
+    <ul class="section-content">
+      <li>Off-the-shelf wheel assemblies didn't suit a double wishbone suspension, which needs custom uprights with specific mounting points for A-arms, steering links, and push/pull rods</li>
+      <li>Material was constrained to aluminum stock from the Elko Engineering Garage, with a maximum face of 2in x 2in, so the design had to fit within that envelope</li>
+    </ul>
+  </div>
+
+  <div class="project-section reveal">
+    <div class="section-label">Proposed Solution</div>
+    <ul class="section-content">
+      <li>Design a custom upright from scratch that works across all four wheels with a single differential design and all necessary mounting points</li>
+    </ul>
+  </div>
+
+  <div class="project-section reveal">
+    <div class="section-label">Design Process</div>
+    <ul class="section-content">
+      <li>Started with the 50mm x 50mm spatial constraint and sketched out what the geometry could realistically look like</li>
+      <li>Recognized early that designing a unique differential per wheel wasn't feasible, so the goal became one differential design that mounts cleanly to every corner</li>
+      <li>Settled on a cloverleaf shape for the assembly</li>
+      <li>Built a rough vehicle dynamics model in SMath to estimate peak upright loading, arriving at 50N as a conservative upper bound</li>
+      <li>First FEA run in Ansys flagged the A-arm mounting point thickness as critically undersized, with max stress well above the yield stress of 6061 aluminum</li>
+      <li>Redesigned: reduced main hub thickness, increased mounting point thickness, removed redundant material</li>
+      <li>Weight reduced by roughly 15% in the process</li>
+      <li>Redesign passed FEA validation</li>
+    </ul>
+  </div>
+
+  <div class="project-section reveal">
+    <div class="section-label">Final Product</div>
+    <ul class="section-content">
+      <li>Fully validated wheel upright with complete assembly: couplings, bearings, and wheels sourced and confirmed compatible</li>
+    </ul>
+  </div>
+
+  <div class="project-section reveal">
+    <div class="section-label">Next Steps</div>
+    <ul class="section-content">
+      <li>Design suspension geometry and validate that the A-arm travel works with the current upright design</li>
+      <li>CNC machine the uprights and assemble</li>
+    </ul>
+  </div>
+
+</div><!-- /wrapper -->
+
+<div id="lightbox">
+  <button id="lb-close" aria-label="Close">&#215;</button>
+  <button class="lb-btn" id="lb-prev" aria-label="Previous">&#8249;</button>
+  <img id="lightbox-img" alt="" />
+  <button class="lb-btn" id="lb-next" aria-label="Next">&#8250;</button>
+</div>
+
+<script src="../shared.js"></script>
+<script>
+(function(){
+  var lightbox = document.getElementById('lightbox');
+  var lbImg    = document.getElementById('lightbox-img');
+  var lbPrev   = document.getElementById('lb-prev');
+  var lbNext   = document.getElementById('lb-next');
+  var lbClose  = document.getElementById('lb-close');
+  var imgs = [], current = 0;
+
+  function open(index){
+    imgs = Array.from(document.querySelectorAll('#gallery img'));
+    current = ((index % imgs.length) + imgs.length) % imgs.length;
+    show(); lightbox.classList.add('open'); document.body.style.overflow = 'hidden';
+  }
+  function close(){ lightbox.classList.remove('open'); document.body.style.overflow = ''; }
+  function show(){ lbImg.src = imgs[current].src; lbImg.alt = imgs[current].alt || ''; }
+  function prev(){ current = (current - 1 + imgs.length) % imgs.length; show(); }
+  function next(){ current = (current + 1) % imgs.length; show(); }
+
+  document.getElementById('gallery').addEventListener('click', function(e){
+    var img = e.target.closest('img'); if(!img) return;
+    open(Array.from(document.querySelectorAll('#gallery img')).indexOf(img));
+  });
+  lbPrev.addEventListener('click', function(e){ e.stopPropagation(); prev(); });
+  lbNext.addEventListener('click', function(e){ e.stopPropagation(); next(); });
+  lbClose.addEventListener('click', close);
+  lightbox.addEventListener('click', function(e){ if(e.target === lightbox) close(); });
+  document.addEventListener('keydown', function(e){
+    if(!lightbox.classList.contains('open')) return;
+    if(e.key === 'ArrowLeft')  prev();
+    if(e.key === 'ArrowRight') next();
+    if(e.key === 'Escape')     close();
+  });
+})();
+</script>
+</body>
+</html>

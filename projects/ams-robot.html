@@ -32,7 +32,16 @@
     animation: fadeUp .5s .4s cubic-bezier(.25,.46,.45,.94) forwards;
   }
   .project-section { margin-bottom: 40px; }
-  .section-content { font-size: 14px; color: var(--text-dim); line-height: 1.85; font-style: italic; }
+  .section-content {
+    list-style: none; display: flex; flex-direction: column; gap: 6px;
+  }
+  .section-content li {
+    font-size: 14px; color: var(--text); line-height: 1.75;
+    padding-left: 16px; position: relative;
+  }
+  .section-content li::before {
+    content: '›'; position: absolute; left: 0; color: var(--accent); font-weight: 700;
+  }
 
   .gallery-grid {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px;
@@ -104,27 +113,51 @@
 
   <div class="project-section reveal">
     <div class="section-label">Problem</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>Had to build a robot that could navigate an unknown maze autonomously within 6 minutes, on carpet</li>
+      <li>Limited to a standardized hardware kit with no camera, encoder, or navigation library</li>
+      <li>The kit's labeled "IR obstacle sensor" turned out to be a PIR thermal sensor, which detects body heat rather than reflected light and cannot detect wooden walls. Catching this before wiring saved significant debugging time.</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Proposed Solution</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>Left-hand wall following: maintain a target distance from the left wall at all times. This approach is mathematically guaranteed to solve any simply-connected maze, which the AMS layout qualified as</li>
+      <li>HC-SR04 ultrasonic sensor on the left side for continuous distance measurement, with a secondary digital IR sensor for close-range binary confirmation</li>
+      <li>Gyroscope-based turning using the MPU6050 IMU: instead of turning for a fixed time, the robot integrates its yaw angle in real time and stops exactly when 88 degrees of rotation is measured. Accurate regardless of battery charge or carpet friction</li>
+      <li>Brief reverse before each turn to clear the robot's own turning radius, preventing the rear wheels from clipping the wall mid-pivot</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Design Process</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>Evaluated three navigation strategies: random turning, flood-fill mapping, and left-hand wall following. Selected wall following as provably complete for this maze topology while only requiring a single distance sensor</li>
+      <li>Prototyped time-based turning first. Rejected it after testing showed turn angle varied with battery charge and carpet friction. Replaced with IMU yaw integration which measures actual rotation instead of estimating from time</li>
+      <li>Discovered a PWM deadband of 72 on carpet: below this value the motors buzz without producing movement. Applied as a hard floor in the motor control function so every non-zero command actually results in motion</li>
+      <li>Set the ultrasonic timeout return value to 999 instead of 0, so the decision logic could cleanly distinguish "no wall in range" from a potential near-zero sensor reading</li>
+      <li>Tuned the steering differential to 255:170 (fast side to slow side), aggressive enough to correct wall drift but shallow enough not to overshoot the corridor</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Final Product</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>4WD differential drive robot on an Arduino Mega 2560, with two L298N motor drivers, an HC-SR04 ultrasonic sensor, two digital IR sensors, and a GY-521 MPU6050 IMU</li>
+      <li>Main control loop runs a four-priority decision tree at roughly 200Hz: front wall detected, left wall too close, left wall in range, left wall lost</li>
+      <li>Turn accuracy within roughly 3 degrees of true 90 on competition carpet at full speed</li>
+      <li>Placed 4th out of 16 teams at the Albertaloop Mechatronics Showdown 2026 at the University of Alberta</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Next Steps</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>Add a second distance sensor on the right side to enable corridor centering rather than single-wall tracking, which would improve stability in wider sections</li>
+      <li>Incorporate wheel encoders alongside the IMU to compensate for wheel slip on carpet, which is the main remaining source of turn error</li>
+      <li>Replace the binary steer/straight/steer logic with a proportional controller that smoothly adjusts heading based on distance error, enabling higher cruise speeds without losing the wall</li>
+    </ul>
   </div>
 
 </div><!-- /wrapper -->
