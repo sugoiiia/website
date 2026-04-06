@@ -53,6 +53,30 @@
   }
   .gallery-grid img:hover { opacity: 0.85; transform: scale(0.99); }
 
+  .repo-link {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--surface); border: 1px solid rgba(200,184,122,.3);
+    border-radius: var(--radius); padding: 18px 22px; margin-bottom: 36px;
+    text-decoration: none; color: inherit;
+    transition: border-color .25s, background .25s;
+    opacity: 0; transform: translateY(10px);
+    animation: fadeUp .6s .55s cubic-bezier(.25,.46,.45,.94) forwards;
+  }
+  .repo-link:hover { border-color: var(--accent); background: var(--accent-dim); }
+  .repo-link svg { width: 22px; height: 22px; flex-shrink: 0; stroke: var(--accent); }
+  .repo-link-text { flex: 1; min-width: 0; }
+  .repo-link-label {
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 3px;
+  }
+  .repo-link-name {
+    font-size: 14px; color: #fff; font-weight: 500;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .repo-link-arrow {
+    font-size: 20px; color: var(--accent); flex-shrink: 0; line-height: 1;
+  }
+
   #lightbox {
     display: none; position: fixed; inset: 0; z-index: 200;
     background: rgba(0,0,0,0.92); align-items: center; justify-content: center;
@@ -102,6 +126,15 @@
   <p class="project-meta">AMS Robotics &nbsp;·&nbsp; 2025 – 2026 &nbsp;·&nbsp; Mechanical &nbsp;·&nbsp; Software</p>
 
   <div class="divider"></div>
+
+  <a href="https://github.com/sugoiiia/AMS2026/tree/main/AMS2026/src/maze-autonomous" target="_blank" rel="noopener noreferrer" class="repo-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+    <div class="repo-link-text">
+      <div class="repo-link-label">Source Code</div>
+      <div class="repo-link-name">sugoiiia / AMS2026 — maze-autonomous</div>
+    </div>
+    <div class="repo-link-arrow">&#8599;</div>
+  </a>
 
   <div class="project-section reveal">
     <div class="section-label">Gallery</div>

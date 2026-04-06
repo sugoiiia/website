@@ -32,7 +32,16 @@
     animation: fadeUp .5s .4s cubic-bezier(.25,.46,.45,.94) forwards;
   }
   .project-section { margin-bottom: 40px; }
-  .section-content { font-size: 14px; color: var(--text-dim); line-height: 1.85; font-style: italic; }
+  .section-content {
+    list-style: none; display: flex; flex-direction: column; gap: 6px;
+  }
+  .section-content li {
+    font-size: 14px; color: var(--text); line-height: 1.75;
+    padding-left: 16px; position: relative;
+  }
+  .section-content li::before {
+    content: '›'; position: absolute; left: 0; color: var(--accent); font-weight: 700;
+  }
 
   .gallery-grid {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px;
@@ -90,7 +99,7 @@
   <a href="../work.html" class="back-link">&#8592; Work</a>
 
   <h1 class="project-title">ARVP: Camera Mount</h1>
-  <p class="project-meta">ARVP &nbsp;·&nbsp; Jan 2026 – Present &nbsp;·&nbsp; Mechanical</p>
+  <p class="project-meta">ARVP &nbsp;·&nbsp; March 2026 – Present &nbsp;·&nbsp; Mechanical</p>
 
   <div class="divider"></div>
 
@@ -104,27 +113,42 @@
 
   <div class="project-section reveal">
     <div class="section-label">Problem</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>Camera mount required constant reprints to accommodate claw subsystem revisions, with no standardized way to adjust distance</li>
+      <li>No resting position for the claw when not in use, which was burning out the servo responsible for raising it</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Proposed Solution</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>Overhaul the existing camera mount with two key additions: a ledge for the claw to rest on, and an adjustable camera distance using a screw-based system</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Design Process</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>Iterated on ledge position to find a distance where the claw could sit without blocking its own range of motion</li>
+      <li>Worked closely with the software team on camera height, adjusting positioning until vision models ran cleanly without picking up other parts of the robot as false detections</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Final Product</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>Mount is currently deployed on the robot</li>
+      <li>Camera distance adjustable in 7.5mm increments</li>
+      <li>Vision models run successfully without interference from robot hardware</li>
+      <li>Claw ledge is being further iterated on by other members</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Next Steps</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>Replace the discrete screw adjustment system with a continuous displacement mechanism while preserving positional accuracy</li>
+    </ul>
   </div>
 
 </div><!-- /wrapper -->

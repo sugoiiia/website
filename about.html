@@ -173,9 +173,26 @@
   .poster-list { display:flex; flex-direction:column; gap:12px; }
   .poster-item {
     background:var(--surface); border:1px solid rgba(255,255,255,.06);
-    border-radius:var(--radius); padding:18px 20px; transition: border-color .3s;
+    border-radius:var(--radius); overflow:hidden; transition: border-color .3s;
+    display: flex; gap: 0;
   }
   .poster-item:hover { border-color:rgba(200,184,122,.2); }
+  .p-thumb {
+    width: 90px; flex-shrink: 0; background: var(--surface2);
+    display: flex; align-items: stretch;
+    border-right: 1px solid rgba(255,255,255,.06);
+    overflow: hidden; position: relative;
+  }
+  .p-thumb embed, .p-thumb object {
+    width: 100%; height: 100%; min-height: 100px;
+    border: none; pointer-events: none;
+  }
+  .p-thumb-placeholder {
+    width: 100%; display: flex; align-items: center; justify-content: center;
+    min-height: 100px;
+  }
+  .p-thumb-placeholder svg { width: 22px; height: 22px; stroke: var(--text-dim); opacity: .4; }
+  .p-info { padding: 16px 18px; flex: 1; min-width: 0; }
   .poster-item .p-title { font-size:13px; color:#fff; font-weight:500; line-height:1.5; }
   .poster-item .p-title a { color: inherit; text-decoration:none; border-bottom:1px solid transparent; transition: color .3s, border-color .3s; }
   .poster-item .p-title a:hover { color:var(--accent); border-bottom-color:var(--accent); }
@@ -436,28 +453,61 @@
       <div class="section-label" style="margin-top:8px">Posters</div>
     </div>
     <div class="poster-list">
+
       <div class="poster-item reveal">
-        <div class="p-title"><a href="Research/Posters/A Sex-Specific Analysis of Osteoarthritic Progression Using In Vitro Simulated Microgravity Exposure - ERSF '24, Gold Medal.pdf" target="_blank" rel="noopener noreferrer">A Sex-Specific Analysis of Osteoarthritic Progression Using In Vitro Simulated Microgravity Exposure</a></div>
-        <div class="p-venue">Edmonton Regional Science Fair &middot; February 2024</div>
-        <div class="p-awards"><span class="t-badge">Gold Medal</span><span class="t-badge">Senior Biology Prize</span></div>
+        <a href="Research/Posters/A Sex-Specific Analysis of Osteoarthritic Progression Using In Vitro Simulated Microgravity Exposure - ERSF '24, Gold Medal.pdf" target="_blank" rel="noopener noreferrer" class="p-thumb">
+          <embed src="Research/Posters/A Sex-Specific Analysis of Osteoarthritic Progression Using In Vitro Simulated Microgravity Exposure - ERSF '24, Gold Medal.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" type="application/pdf" />
+        </a>
+        <div class="p-info">
+          <div class="p-title"><a href="Research/Posters/A Sex-Specific Analysis of Osteoarthritic Progression Using In Vitro Simulated Microgravity Exposure - ERSF '24, Gold Medal.pdf" target="_blank" rel="noopener noreferrer">A Sex-Specific Analysis of Osteoarthritic Progression Using In Vitro Simulated Microgravity Exposure</a></div>
+          <div class="p-venue">Edmonton Regional Science Fair &middot; February 2024</div>
+          <div class="p-awards"><span class="t-badge">Gold Medal</span><span class="t-badge">Senior Biology Prize</span></div>
+        </div>
       </div>
+
       <div class="poster-item reveal">
-        <div class="p-title"><a href="Research/Posters/CD36, Sex Differences, Microgravity, and Osteoarthritis - CWSF '24 Bronze Medal.pdf" target="_blank" rel="noopener noreferrer">CD36, Sex Differences, Microgravity, and Osteoarthritis</a></div>
-        <div class="p-venue">Canadian Wide Science Fair &middot; May 2024</div>
-        <div class="p-awards"><span class="t-badge">Bronze Medal</span></div>
+        <a href="Research/Posters/CD36, Sex Differences, Microgravity, and Osteoarthritis - CWSF '24 Bronze Medal.pdf" target="_blank" rel="noopener noreferrer" class="p-thumb">
+          <embed src="Research/Posters/CD36, Sex Differences, Microgravity, and Osteoarthritis - CWSF '24 Bronze Medal.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" type="application/pdf" />
+        </a>
+        <div class="p-info">
+          <div class="p-title"><a href="Research/Posters/CD36, Sex Differences, Microgravity, and Osteoarthritis - CWSF '24 Bronze Medal.pdf" target="_blank" rel="noopener noreferrer">CD36, Sex Differences, Microgravity, and Osteoarthritis</a></div>
+          <div class="p-venue">Canadian Wide Science Fair &middot; May 2024</div>
+          <div class="p-awards"><span class="t-badge">Bronze Medal</span></div>
+        </div>
       </div>
+
       <div class="poster-item reveal">
-        <div class="p-title">Exploring Decellularized Sturgeon Cartilage as a Scaffold for Human Nasal Chondrocytes</div>
-        <div class="p-venue">Adesida Laboratory Lab Meeting &middot; July 2025</div>
+        <div class="p-thumb">
+          <div class="p-thumb-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+        </div>
+        <div class="p-info">
+          <div class="p-title">Exploring Decellularized Sturgeon Cartilage as a Scaffold for Human Nasal Chondrocytes</div>
+          <div class="p-venue">Adesida Laboratory Lab Meeting &middot; July 2025</div>
+        </div>
       </div>
+
       <div class="poster-item reveal">
-        <div class="p-title"><a href="Research/Posters/SIMULATED MICROGRAVITY MODELS SEX DIFFERENCES IN KNEE OSTEOARTHRITIS THROUGH A CD36 REGULATED MECHANOMETABOLIC CIRCUIT - NSERC Summer 2025.pdf" target="_blank" rel="noopener noreferrer">Simulated Microgravity Models Sex Differences in Knee Osteoarthritis Through a CD36 Regulated Mechanometabolic Circuit</a></div>
-        <div class="p-venue">Student Summer Research Day &middot; August 2025</div>
+        <a href="Research/Posters/SIMULATED MICROGRAVITY MODELS SEX DIFFERENCES IN KNEE OSTEOARTHRITIS THROUGH A CD36 REGULATED MECHANOMETABOLIC CIRCUIT - NSERC Summer 2025.pdf" target="_blank" rel="noopener noreferrer" class="p-thumb">
+          <embed src="Research/Posters/SIMULATED MICROGRAVITY MODELS SEX DIFFERENCES IN KNEE OSTEOARTHRITIS THROUGH A CD36 REGULATED MECHANOMETABOLIC CIRCUIT - NSERC Summer 2025.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" type="application/pdf" />
+        </a>
+        <div class="p-info">
+          <div class="p-title"><a href="Research/Posters/SIMULATED MICROGRAVITY MODELS SEX DIFFERENCES IN KNEE OSTEOARTHRITIS THROUGH A CD36 REGULATED MECHANOMETABOLIC CIRCUIT - NSERC Summer 2025.pdf" target="_blank" rel="noopener noreferrer">Simulated Microgravity Models Sex Differences in Knee Osteoarthritis Through a CD36 Regulated Mechanometabolic Circuit</a></div>
+          <div class="p-venue">Student Summer Research Day &middot; August 2025</div>
+        </div>
       </div>
+
       <div class="poster-item reveal">
-        <div class="p-title">Simulating Robotic Ultrasound via Contact-Aware RL</div>
-        <div class="p-venue">Dean's Research Award Presentation &middot; December 2025</div>
+        <a href="Research/Posters/Simulating Robotic Ultrasound via Contact Aware RL.pdf" target="_blank" rel="noopener noreferrer" class="p-thumb">
+          <embed src="Research/Posters/Simulating Robotic Ultrasound via Contact Aware RL.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" type="application/pdf" />
+        </a>
+        <div class="p-info">
+          <div class="p-title"><a href="Research/Posters/Simulating Robotic Ultrasound via Contact Aware RL.pdf" target="_blank" rel="noopener noreferrer">Simulating Robotic Ultrasound via Contact-Aware RL</a></div>
+          <div class="p-venue">Dean's Research Award Presentation &middot; December 2025</div>
+        </div>
       </div>
+
     </div>
 
     <div class="reveal" style="margin-top:32px">
