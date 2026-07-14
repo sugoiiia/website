@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ARVP — Aahil Ansari</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../shared.css" />
+<style>
+  .wrapper {
+    position: relative; z-index: 2;
+    max-width: 960px; margin: 0 auto; padding: 0 28px;
+    padding-top: 96px; padding-bottom: 80px;
+  }
+  .back-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--text-dim); text-decoration: none; font-size: 12px;
+    letter-spacing: .08em; text-transform: uppercase; margin-bottom: 32px;
+    transition: color .2s;
+  }
+  .back-link:hover { color: var(--accent); }
+  .project-title {
+    font-family: var(--display); font-size: clamp(32px, 6vw, 52px);
+    font-weight: 800; color: #fff; line-height: 1.1;
+    letter-spacing: -.02em; margin-bottom: 16px;
+    opacity: 0; transform: translateY(12px);
+    animation: fadeUp .6s .2s cubic-bezier(.25,.46,.45,.94) forwards;
+  }
+  .project-meta {
+    font-size: 12px; color: var(--text-dim); letter-spacing: .06em; margin-bottom: 36px;
+    opacity: 0; transform: translateY(8px);
+    animation: fadeUp .5s .4s cubic-bezier(.25,.46,.45,.94) forwards;
+  }
+
+  /* ─── CARD GRID ─── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  a.work-card { text-decoration: none; display: block; }
+  .work-card {
+    background: var(--surface); border: 1px solid rgba(255,255,255,.06);
+    border-radius: var(--radius); overflow: hidden; cursor: pointer;
+    transition: transform .3s cubic-bezier(.25,.46,.45,.94), border-color .3s;
+  }
+  .work-card:hover { transform: translateY(-4px); border-color: rgba(200,184,122,.25); }
+  .card-thumb {
+    aspect-ratio: 16 / 9; background: var(--surface2);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: var(--radius) var(--radius) 0 0; overflow: hidden;
+  }
+  .card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card-thumb-label {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--text-dim); letter-spacing: .1em; opacity: .5;
+  }
+  .card-body   { padding: 18px 20px 16px; }
+  .card-title  { font-size: 15px; color: #fff; font-weight: 500; margin-bottom: 8px; line-height: 1.4; }
+  .card-desc   { font-size: 13px; color: var(--text-dim); line-height: 1.6; margin-bottom: 14px; }
+  .card-tags   { display: flex; flex-wrap: wrap; gap: 5px; }
+
+  @media (max-width: 480px) {
+    nav { gap: 4px; } nav a { font-size: 11px; padding: 5px 9px; }
+    .wrapper { padding-top: 80px; padding-left: 18px; padding-right: 18px; }
+    .card-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div class="glow" id="glow"></div>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="../work.html">Work</a>
+  <a href="../photography.html">Photography</a>
+  <a href="../about.html">About</a>
+</nav>
+
+<div class="wrapper">
+
+  <a href="../work.html" class="back-link">&#8592; Work</a>
+
+  <h1 class="project-title">ARVP</h1>
+  <p class="project-meta">Autonomous Robotic Vehicle Project &nbsp;·&nbsp; 5 projects</p>
+
+  <div class="divider"></div>
+
+  <div class="card-grid">
+    <a href="arvp-claw-retractor.html" class="work-card">
+      <div class="card-thumb"><img src="../ARVP/Claw Retractor/Claw_IRL.png" alt="Claw retractor IRL" /></div>
+      <div class="card-body">
+        <div class="card-title">ARVP: Claw Retractor</div>
+        <div class="card-desc">Passive spring-based retractor that eliminated servo burnout on Kenai's claw arm</div>
+        <div class="card-tags"><span class="t-badge">Mechanical</span></div>
+      </div>
+    </a>
+
+    <a href="arvp-battery-pod.html" class="work-card">
+      <div class="card-thumb"><img src="../ARVP/Battery Pod/Battery_Pod_IRL.png" alt="Battery pod IRL" /></div>
+      <div class="card-body">
+        <div class="card-title">ARVP: Battery Pod</div>
+        <div class="card-desc">Custom Battery Pod for our mini-sub, Koda</div>
+        <div class="card-tags">
+          <span class="t-badge">Mechanical</span>
+          <span class="t-badge">Electrical</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="arvp-floaty-holder.html" class="work-card">
+      <div class="card-thumb"><span class="card-thumb-label">[ photo ]</span></div>
+      <div class="card-body">
+        <div class="card-title">ARVP: Floaty Holder</div>
+        <div class="card-desc">Description coming soon.</div>
+        <div class="card-tags"><span class="t-badge">Mechanical</span></div>
+      </div>
+    </a>
+
+    <a href="arvp-front-panel.html" class="work-card">
+      <div class="card-thumb"><span class="card-thumb-label">[ photo ]</span></div>
+      <div class="card-body">
+        <div class="card-title">ARVP: Front Panel</div>
+        <div class="card-desc">Description coming soon.</div>
+        <div class="card-tags"><span class="t-badge">Mechanical</span></div>
+      </div>
+    </a>
+
+    <a href="arvp-camera-mount.html" class="work-card">
+      <div class="card-thumb"><img src="../ARVP/Camera Mount/Camera_Holder_IRL (1).png" alt="Camera mount isometric view" /></div>
+      <div class="card-body">
+        <div class="card-title">ARVP: Camera Mount</div>
+        <div class="card-desc">Adjustable camera mount for our main-sub, Kenai</div>
+        <div class="card-tags"><span class="t-badge">Mechanical</span></div>
+      </div>
+    </a>
+  </div>
+
+</div><!-- /wrapper -->
+
+<script src="../shared.js"></script>
+</body>
+</html>
