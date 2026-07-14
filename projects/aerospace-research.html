@@ -60,7 +60,16 @@
   .card-desc   { font-size: 13px; color: var(--text-dim); line-height: 1.6; margin-bottom: 14px; }
   .card-tags   { display: flex; flex-wrap: wrap; gap: 5px; }
 
+  /* ─── HERO IMAGE ─── */
+  .hero-image {
+    display: block; width: 100%; aspect-ratio: 16 / 7; object-fit: cover;
+    border-radius: var(--radius); margin-bottom: 40px;
+    opacity: 0; transform: translateY(14px);
+    animation: fadeUp .6s .3s cubic-bezier(.25,.46,.45,.94) forwards;
+  }
+
   @media (max-width: 480px) {
+    .hero-image { aspect-ratio: 4 / 3; }
     nav { gap: 4px; } nav a { font-size: 11px; padding: 5px 9px; }
     .wrapper { padding-top: 80px; padding-left: 18px; padding-right: 18px; }
     .card-grid { grid-template-columns: 1fr; }
@@ -88,30 +97,38 @@
 
   <div class="divider"></div>
 
+  <img class="hero-image" src="../Aerospace/LabView/debugging_setup.png" alt="LabVIEW debugging setup" />
+
   <div class="card-grid">
     <a href="aero-static-testing-jig.html" class="work-card">
-      <div class="card-thumb"><span class="card-thumb-label">[ photo ]</span></div>
+      <div class="card-thumb"><img src="../Aerospace/Static/freezer_ina226.png" alt="INA226 current sensing setup" /></div>
       <div class="card-body">
         <div class="card-title">Static Testing Jig</div>
-        <div class="card-desc">Description coming soon.</div>
-        <div class="card-tags"><span class="t-badge">Mechanical</span></div>
+        <div class="card-desc">Static thrust stand with INA226 current sensing and a voltage divider for live power measurement</div>
+        <div class="card-tags">
+          <span class="t-badge">Mechanical</span>
+          <span class="t-badge">Electrical</span>
+        </div>
       </div>
     </a>
 
     <a href="aero-dynamic-testing-jig.html" class="work-card">
-      <div class="card-thumb"><span class="card-thumb-label">[ photo ]</span></div>
+      <div class="card-thumb"><img src="../Aerospace/Dynamic/80_20_stand.png" alt="80/20 extrusion stand" /></div>
       <div class="card-body">
         <div class="card-title">Dynamic Testing Jig</div>
-        <div class="card-desc">Description coming soon.</div>
-        <div class="card-tags"><span class="t-badge">Mechanical</span></div>
+        <div class="card-desc">80/20-mounted test jig with DAQ logging motor performance across duty cycles</div>
+        <div class="card-tags">
+          <span class="t-badge">Mechanical</span>
+          <span class="t-badge">Software</span>
+        </div>
       </div>
     </a>
 
     <a href="aero-labview-motor-control.html" class="work-card">
-      <div class="card-thumb"><span class="card-thumb-label">[ photo ]</span></div>
+      <div class="card-thumb"><img src="../Aerospace/LabView/wiring.png" alt="Motor control wiring" /></div>
       <div class="card-body">
         <div class="card-title">LabVIEW Motor Control</div>
-        <div class="card-desc">Description coming soon.</div>
+        <div class="card-desc">LabVIEW front panel and wiring for controlling and debugging motor test hardware</div>
         <div class="card-tags">
           <span class="t-badge">Software</span>
           <span class="t-badge">Electrical</span>
