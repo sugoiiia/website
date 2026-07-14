@@ -32,7 +32,16 @@
     animation: fadeUp .5s .4s cubic-bezier(.25,.46,.45,.94) forwards;
   }
   .project-section { margin-bottom: 40px; }
-  .section-content { font-size: 14px; color: var(--text-dim); line-height: 1.85; font-style: italic; }
+  .section-content {
+    list-style: none; display: flex; flex-direction: column; gap: 6px;
+  }
+  .section-content li {
+    font-size: 14px; color: var(--text); line-height: 1.75;
+    padding-left: 16px; position: relative;
+  }
+  .section-content li::before {
+    content: '›'; position: absolute; left: 0; color: var(--accent); font-weight: 700;
+  }
   .project-intro { font-size: 14px; color: var(--text); line-height: 1.75; max-width: 560px; margin-bottom: 36px; }
 
   .gallery-grid {
@@ -134,27 +143,46 @@
 
   <div class="project-section reveal">
     <div class="section-label">Problem</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>No fixture in the wind tunnel that could hold the different test articles (canards, propellers, pitot tube) in a repeatable, reusable way</li>
+      <li>Needed a way to run a motor/propeller in the tunnel and log its behavior at high fidelity for frequency sweeps</li>
+      <li>The motor's own vibration and airflow couldn't be allowed to corrupt the measurements, so the mounting had to minimize aerodynamic coupling between the propeller and the jig body</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Proposed Solution</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>Build one modular stand that works across the canards, propellers, and pitot tube in the wind tunnel</li>
+      <li>Design a dedicated propeller/motor jig that keeps the body far enough out of the propeller flow to avoid interfering with the readings</li>
+      <li>Log the raw signal at high sample rate so frequency content could be pulled out cleanly afterward</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Design Process</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>Built the base around a heavy block already in the lab for stability, using spare 80/20 aluminum extrusion and clamps to hold everything in place</li>
+      <li>Laser cut acrylic windows for everything entering the tunnel: a hole for the CF rod on the canard wing, a rectangular cutout for the aluminum extrusion, and a hole for the pitot tube</li>
+      <li>Motor ran hot during testing, so switched the jig material to ASA to avoid melting</li>
+      <li>Applied the same strength approach as the static jig: gyroid infill and tuned print orientation</li>
+      <li>Sized the propeller standoff using slipstream contraction from momentum theory: a propeller accelerates the air through it, so by continuity the wake contracts to a smaller stream tube, ideally about 0.707 of the prop radius. For the 6x4 APC (radius ≈ 76mm), that puts the fully contracted slipstream at roughly 54mm, so I placed the jig body at 65mm to sit just outside that stream tube with margin, keeping the structure out of the accelerated wake so it wouldn't corrupt the aerodynamic measurements</li>
+      <li>Treated 0.707R as a conservative bound since it's the ideal static case; real contraction is weaker in tunnel freestream flow, so the 65mm standoff has margin built in</li>
+      <li>Initially planned to reuse the legacy LabVIEW setup, which already did 0.5s logging via FFT over a 0.5s window</li>
+      <li>Realized that logging any faster with the FFT approach would wreck frequency resolution due to the time-frequency uncertainty tradeoff (a shorter FFT window gives coarser frequency resolution)</li>
+      <li>Switched to logging the raw waveform straight to a binary file via the DAQ at 20kHz, which captures the full signal and lets the FFT be done offline with any window</li>
+      <li>At 20kHz sampling, the usable frequency range goes up to 10kHz (Nyquist)</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Final Product</div>
-    <p class="section-content">[description coming soon]</p>
-  </div>
-
-  <div class="project-section reveal">
-    <div class="section-label">Next Steps</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>Modular wind tunnel stand reused across canards, propellers, and the pitot tube</li>
+      <li>Dedicated propeller jig that runs the motor without the body corrupting the aerodynamic measurements</li>
+      <li>Raw-waveform logging pipeline capturing clean data up to 10kHz for frequency sweeps</li>
+      <li>Propeller frequency sweeps completed with good, usable data</li>
+    </ul>
   </div>
 
 </div><!-- /wrapper -->
