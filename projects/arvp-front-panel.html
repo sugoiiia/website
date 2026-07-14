@@ -32,7 +32,16 @@
     animation: fadeUp .5s .4s cubic-bezier(.25,.46,.45,.94) forwards;
   }
   .project-section { margin-bottom: 40px; }
-  .section-content { font-size: 14px; color: var(--text-dim); line-height: 1.85; font-style: italic; }
+  .section-content {
+    list-style: none; display: flex; flex-direction: column; gap: 6px;
+  }
+  .section-content li {
+    font-size: 14px; color: var(--text); line-height: 1.75;
+    padding-left: 16px; position: relative;
+  }
+  .section-content li::before {
+    content: '›'; position: absolute; left: 0; color: var(--accent); font-weight: 700;
+  }
   .project-intro { font-size: 14px; color: var(--text); line-height: 1.75; max-width: 560px; margin-bottom: 36px; }
 
   .gallery-grid {
@@ -100,7 +109,7 @@
 
   <div class="divider"></div>
 
-  <p class="project-intro">Front panel enclosure for ARVP, sealed with gasket sealant for waterproofing.</p>
+  <p class="project-intro">Structural front panel that rigidly ties both frame halves together while consolidating two cameras and a self-waterproofed OLED display.</p>
 
   <div class="project-section reveal">
     <div class="section-label">Gallery</div>
@@ -122,27 +131,43 @@
 
   <div class="project-section reveal">
     <div class="section-label">Problem</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>The frame was in two separate halves, each carrying its own camera, with nothing rigidly connecting them at the front</li>
+      <li>During jerky rolls the two halves could shift relative to each other, which knocked the thrusters out of alignment, so the bot no longer thrust where it was calibrated to</li>
+      <li>The front also needed an OLED display, and everything up front had to survive underwater</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Proposed Solution</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>Design one front panel that ties both frame halves together into a single rigid front face, so the frame moves as one body and the thrusters stay aligned through hard maneuvers</li>
+      <li>Use that same panel to consolidate both cameras and a waterproofed OLED, since the structural piece was already there</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Design Process</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>Designed the panel as a structural member that bridges and closes the previously open front of the frame, locking the two halves together so they can't shift relative to each other during rolls</li>
+      <li>Waterproofed the OLED myself using a combination of epoxy, 3D printing, ethernet cables, and gasket sealant to keep water out of the display</li>
+      <li>Consolidated the two cameras and the sealed OLED into that same panel, so one part serves as the front face, the display housing, and a structural tie</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Final Product</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>A single front panel that rigidly joins both frame halves, keeping the thrusters aligned through the jerky motion that used to offset them</li>
+      <li>Same panel carries two cameras and a self-waterproofed OLED, doing structural, sensing, and display duty in one part</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Next Steps</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>[description coming soon]</li>
+    </ul>
   </div>
 
 </div><!-- /wrapper -->

@@ -32,7 +32,16 @@
     animation: fadeUp .5s .4s cubic-bezier(.25,.46,.45,.94) forwards;
   }
   .project-section { margin-bottom: 40px; }
-  .section-content { font-size: 14px; color: var(--text-dim); line-height: 1.85; font-style: italic; }
+  .section-content {
+    list-style: none; display: flex; flex-direction: column; gap: 6px;
+  }
+  .section-content li {
+    font-size: 14px; color: var(--text); line-height: 1.75;
+    padding-left: 16px; position: relative;
+  }
+  .section-content li::before {
+    content: '›'; position: absolute; left: 0; color: var(--accent); font-weight: 700;
+  }
   .project-intro { font-size: 14px; color: var(--text); line-height: 1.75; max-width: 560px; margin-bottom: 36px; }
 
   .gallery-grid {
@@ -100,7 +109,7 @@
 
   <div class="divider"></div>
 
-  <p class="project-intro">Mounting bracket that secures ARVP's floaty in place.</p>
+  <p class="project-intro">Split-ring clamp that keeps ARVP's floaty securely captured and helps counter the claw mechanism's offset weight.</p>
 
   <div class="project-section reveal">
     <div class="section-label">Gallery</div>
@@ -118,27 +127,43 @@
 
   <div class="project-section reveal">
     <div class="section-label">Problem</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>The floaty (buoyancy foam) kept falling out of its holder during runs</li>
+      <li>When it came loose, the bot's buoyancy shifted and it lost control mid-run, a recurring failure that kept interrupting testing</li>
+      <li>The claw mechanism hangs off to one side, so its weight pulled the bot off level, which the holder design also had to account for</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Proposed Solution</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>Redesign the floaty holder so the floaty stays captured and can't work its way out during a run</li>
+      <li>Use the holder placement to help counter the claw's offset weight and bring the bot back to level</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Design Process</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>Ran center-of-gravity and moment calculations to find where the floaty needed to sit to level the bot and offset the claw mechanism's weight</li>
+      <li>Designed a split-ring clamp that wraps fully around the buoyancy tube and cinches down on it, so the floaty is positively clamped in place rather than resting in an open cradle it could slip out of, directly eliminating the recurring fall-out failure</li>
+      <li>Mounted the clamp to the frame through two flanged feet, positioning the whole assembly at the location the COG/moment calcs called for</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Final Product</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>Split-ring clamp that keeps the floaty secured through a full run, eliminating the loose-floaty failure that had been causing loss of control</li>
+      <li>Floaty positioned per the COG/moment calcs to help balance the claw's offset, keeping the bot level</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Next Steps</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>Make the holder more hydrodynamic, either through CFD-guided shaping or by minimizing the floaty's cross-sectional area/inflating it with less dense air</li>
+    </ul>
   </div>
 
 </div><!-- /wrapper -->
