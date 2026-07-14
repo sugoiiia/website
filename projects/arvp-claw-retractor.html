@@ -52,6 +52,11 @@
     transition: opacity .2s, transform .2s cubic-bezier(.25,.46,.45,.94);
   }
   .gallery-grid img:hover { opacity: 0.85; transform: scale(0.99); }
+  .gallery-item { margin: 0; }
+  .gallery-caption {
+    font-family: var(--mono); font-size: 11px; color: var(--text-dim);
+    letter-spacing: .04em; margin-top: 6px; line-height: 1.4;
+  }
 
   #lightbox {
     display: none; position: fixed; inset: 0; z-index: 200;
@@ -106,11 +111,34 @@
   <div class="project-section reveal">
     <div class="section-label">Gallery</div>
     <div class="gallery-grid" id="gallery">
-      <img src="../ARVP/Claw Retractor/Claw_IRL.png" alt="Claw retractor IRL" loading="lazy" />
-      <img src="../ARVP/Claw Retractor/Claw_Retractor_ISO.png" alt="Claw retractor isometric view" loading="lazy" />
-      <img src="../ARVP/Claw Retractor/Claw_Up.png" alt="Claw in up position" loading="lazy" />
-      <img src="../ARVP/Claw Retractor/Claw_Down.png" alt="Claw in down position" loading="lazy" />
-      <video src="../ARVP/Claw Retractor/Claw Retracting.mp4" controls muted playsinline style="width:100%;border-radius:6px;cursor:pointer;display:block;"></video>
+      <figure class="gallery-item">
+        <img src="../ARVP/Claw Retractor/Claw_IRL.png" alt="Claw retractor IRL" loading="lazy" />
+        <figcaption class="gallery-caption">Claw retractor IRL</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="../ARVP/Claw Retractor/Claw_Retractor_ISO.png" alt="Claw retractor isometric view" loading="lazy" />
+        <figcaption class="gallery-caption">Claw retractor isometric view</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="../ARVP/Claw Retractor/Claw_Up.png" alt="Claw in up position" loading="lazy" />
+        <figcaption class="gallery-caption">Claw in up position</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="../ARVP/Claw Retractor/Claw_Down.png" alt="Claw in down position" loading="lazy" />
+        <figcaption class="gallery-caption">Claw in down position</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="../ARVP/Claw Retractor/sheet_metal_bracket_claw_up.png" alt="Sheet metal bracket, claw up" loading="lazy" />
+        <figcaption class="gallery-caption">Sheet metal bracket, claw up</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="../ARVP/Claw Retractor/sheet_metal_bracket_claw_down.png" alt="Sheet metal bracket, claw down" loading="lazy" />
+        <figcaption class="gallery-caption">Sheet metal bracket, claw down</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <video src="../ARVP/Claw Retractor/Claw Retracting.mp4" controls muted playsinline style="width:100%;border-radius:6px;cursor:pointer;display:block;"></video>
+        <figcaption class="gallery-caption">Claw retracting (video)</figcaption>
+      </figure>
     </div>
   </div>
 

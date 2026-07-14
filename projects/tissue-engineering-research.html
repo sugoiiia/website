@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ARVP: Front Panel — Aahil Ansari</title>
+<title>Tissue Engineering Research — Aahil Ansari</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../shared.css" />
 <style>
@@ -50,6 +50,30 @@
     letter-spacing: .04em; margin-top: 6px; line-height: 1.4;
   }
 
+  .report-link {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--surface); border: 1px solid rgba(200,184,122,.3);
+    border-radius: var(--radius); padding: 18px 22px; margin-bottom: 14px;
+    text-decoration: none; color: inherit;
+    transition: border-color .25s, background .25s;
+  }
+  .report-link:hover { border-color: var(--accent); background: var(--accent-dim); }
+  .report-link svg { width: 22px; height: 22px; flex-shrink: 0; stroke: var(--accent); }
+  .report-link-text { flex: 1; min-width: 0; }
+  .report-link-label {
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 3px;
+  }
+  .report-link-name {
+    font-size: 14px; color: #fff; font-weight: 500;
+  }
+  .report-link-note {
+    font-size: 12px; color: var(--text-dim); margin-top: 4px; line-height: 1.5;
+  }
+  .report-link-arrow {
+    font-size: 20px; color: var(--accent); flex-shrink: 0; line-height: 1;
+  }
+
   #lightbox {
     display: none; position: fixed; inset: 0; z-index: 200;
     background: rgba(0,0,0,0.92); align-items: center; justify-content: center;
@@ -93,29 +117,56 @@
 
 <div class="wrapper">
 
-  <a href="arvp.html" class="back-link">&#8592; ARVP</a>
+  <a href="../work.html" class="back-link">&#8592; Work</a>
 
-  <h1 class="project-title">ARVP: Front Panel</h1>
-  <p class="project-meta">ARVP &nbsp;·&nbsp; Mechanical</p>
+  <h1 class="project-title">Tissue Engineering Research</h1>
+  <p class="project-meta">Research</p>
 
   <div class="divider"></div>
 
-  <p class="project-intro">Front panel enclosure for ARVP, sealed with gasket sealant for waterproofing.</p>
+  <p class="project-intro">In vitro tissue models studying sex differences in knee osteoarthritis progression under simulated microgravity, using bioprinted PEGDA hydrogel coupons. Full methodology and results are documented in the posters below.</p>
+
+  <div class="project-section reveal">
+    <div class="section-label">Posters</div>
+    <a href="../Research/Posters/A Sex-Specific Analysis of Osteoarthritic Progression Using In Vitro Simulated Microgravity Exposure - ERSF '24, Gold Medal.pdf" target="_blank" rel="noopener noreferrer" class="report-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      <div class="report-link-text">
+        <div class="report-link-label">Poster</div>
+        <div class="report-link-name">A Sex-Specific Analysis of Osteoarthritic Progression Using In Vitro Simulated Microgravity Exposure</div>
+        <div class="report-link-note">ERSF '24 — Gold Medal</div>
+      </div>
+      <div class="report-link-arrow">&#8599;</div>
+    </a>
+    <a href="../Research/Posters/CD36, Sex Differences, Microgravity, and Osteoarthritis - CWSF '24 Bronze Medal.pdf" target="_blank" rel="noopener noreferrer" class="report-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      <div class="report-link-text">
+        <div class="report-link-label">Poster</div>
+        <div class="report-link-name">CD36, Sex Differences, Microgravity, and Osteoarthritis</div>
+        <div class="report-link-note">CWSF '24 — Bronze Medal</div>
+      </div>
+      <div class="report-link-arrow">&#8599;</div>
+    </a>
+    <a href="../Research/Posters/SIMULATED MICROGRAVITY MODELS SEX DIFFERENCES IN KNEE OSTEOARTHRITIS THROUGH A CD36 REGULATED MECHANOMETABOLIC CIRCUIT - NSERC Summer 2025.pdf" target="_blank" rel="noopener noreferrer" class="report-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      <div class="report-link-text">
+        <div class="report-link-label">Poster</div>
+        <div class="report-link-name">Simulated Microgravity Models Sex Differences in Knee Osteoarthritis Through a CD36 Regulated Mechanometabolic Circuit</div>
+        <div class="report-link-note">NSERC Summer 2025</div>
+      </div>
+      <div class="report-link-arrow">&#8599;</div>
+    </a>
+  </div>
 
   <div class="project-section reveal">
     <div class="section-label">Gallery</div>
     <div class="gallery-grid" id="gallery">
       <figure class="gallery-item">
-        <img src="../ARVP/Front Panel/panel_irl.png" alt="Front panel IRL" loading="lazy" />
-        <figcaption class="gallery-caption">Front panel IRL</figcaption>
+        <img src="../Research/TE Photos/Bioprinted_PEGDA_Coupon_with_Raft.png" alt="Bioprinted PEGDA coupon with raft" loading="lazy" />
+        <figcaption class="gallery-caption">Bioprinted PEGDA coupon with raft</figcaption>
       </figure>
       <figure class="gallery-item">
-        <img src="../ARVP/Front Panel/enclosure.png" alt="Front panel enclosure" loading="lazy" />
-        <figcaption class="gallery-caption">Front panel enclosure</figcaption>
-      </figure>
-      <figure class="gallery-item">
-        <img src="../ARVP/Front Panel/enclosure_gasket_sealant.png" alt="Enclosure gasket sealant" loading="lazy" />
-        <figcaption class="gallery-caption">Enclosure gasket sealant</figcaption>
+        <img src="../Research/TE Photos/Bioprinted_PEGDA_Coupon_Flat.png" alt="Bioprinted PEGDA coupon, flat" loading="lazy" />
+        <figcaption class="gallery-caption">Bioprinted PEGDA coupon, flat</figcaption>
       </figure>
     </div>
   </div>
