@@ -32,7 +32,16 @@
     animation: fadeUp .5s .4s cubic-bezier(.25,.46,.45,.94) forwards;
   }
   .project-section { margin-bottom: 40px; }
-  .section-content { font-size: 14px; color: var(--text-dim); line-height: 1.85; font-style: italic; }
+  .section-content {
+    list-style: none; display: flex; flex-direction: column; gap: 6px;
+  }
+  .section-content li {
+    font-size: 14px; color: var(--text); line-height: 1.75;
+    padding-left: 16px; position: relative;
+  }
+  .section-content li::before {
+    content: '›'; position: absolute; left: 0; color: var(--accent); font-weight: 700;
+  }
   .project-intro { font-size: 14px; color: var(--text); line-height: 1.75; max-width: 560px; margin-bottom: 36px; }
 
   .gallery-grid {
@@ -126,27 +135,55 @@
 
   <div class="project-section reveal">
     <div class="section-label">Problem</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>No way to test or log a motor while it stayed stationary, so no visibility into current draw, voltage sag, or motor/battery endurance</li>
+      <li>All of this is critical for a fixed-wing/VTOL drone, where the power system has to be trusted before flight</li>
+      <li>No way to know how much current the motor pulled at a given throttle</li>
+      <li>This gap already caused a real failure: we pulled too much current during flight and burned through a wire with no warning</li>
+      <li>No data on how the battery behaves in the cold, which matters for real operating conditions</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Proposed Solution</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>Build a static testing rig that holds the motor fixed so it can be run safely on the ground while logging live electrical data</li>
+      <li>Use that data to derive the relationship between throttle and current, so wiring could be sized correctly and no more wire would burn</li>
+      <li>Extend the setup to test battery endurance in cold conditions and evaluate insulation options</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Design Process</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>Rig had to survive real operating loads: motor spins up to 28,800 rpm, produces around 10N of thrust, and the sudden starting torque on spin-up is especially violent</li>
+      <li>Needed to be clampable anywhere so it could be reused across setups</li>
+      <li>Designed the jig with relief cuts and gyroid infill for strength, and changed the print orientation to fix a recurring failure where starting torque snapped the print</li>
+      <li>Soldered and constructed the entire wiring and testing setup from scratch, including the sensing and logging electronics</li>
+      <li>Derived the current-vs-throttle relationship from first principles using a bench power supply</li>
+      <li>Ran into issues hitting the power supply's 10A over-current protection; added a 1000uF capacitor and switched to a gradual throttle ramp-up instead, which worked</li>
+      <li>Landed on the relationship I = A(PWM − B)², which matched the data with an R² of 0.9994 (shown in the static thrust testing image)</li>
+      <li>Arduino couldn't log voltages above 5V, so added a voltage divider, plus a 47uF capacitor for smooth logging at 5Hz</li>
+      <li>Ran battery endurance tests in a freezer to simulate cold operating conditions</li>
+      <li>All static-test logging streamed to Excel using Excel Data Streamer</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Final Product</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>Working static rig that safely runs the motor on the ground and logs current, voltage, and endurance data</li>
+      <li>Verified current-vs-throttle relationship (R² = 0.9994) that lets wiring be sized correctly, directly addressing the burned-wire failure</li>
+      <li>Found a key result: battery endurance drops off significantly in the cold, especially with LiHV cells, which has direct implications for cold-weather flight</li>
+    </ul>
   </div>
 
   <div class="project-section reveal">
     <div class="section-label">Next Steps</div>
-    <p class="section-content">[description coming soon]</p>
+    <ul class="section-content">
+      <li>Get the INA226 working and solder on a 0.002 ohm shunt resistor to log higher currents accurately</li>
+      <li>Continue testing insulation options to mitigate cold-weather endurance loss</li>
+    </ul>
   </div>
 
 </div><!-- /wrapper -->
